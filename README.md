@@ -4,7 +4,7 @@ An example of a realtime collaborative app based on ShareDB and Operational Tran
 ## Setup
 
 1. Install [Node.js](https://nodejs.org/en/download).
-2. Run `npm install`
+2. Run `npm install`.
 
 ## Usage
 
