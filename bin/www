@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+require('@dotenvx/dotenvx').config();
+
 /**
  * Module dependencies.
  */
