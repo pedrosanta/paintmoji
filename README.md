@@ -1,5 +1,5 @@
 # paintmoji
-An example of a realtime collaborative app based on ShareDB and Operational Transformation.
+An example of a realtime collaborative app based on [ShareDB](https://github.com/share/sharedb) and [Operational Transformation](https://en.wikipedia.org/wiki/Operational_transformation).
 
 ## Setup
 
