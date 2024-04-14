@@ -1,8 +1,20 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
 }
 
-a {
-  color: #00B7FF;
+header {
+    background-color: whitesmoke;
+    padding: 0.6em;
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+}
+
+header h1 {
+    margin: 0;
+    display: inline-block;
+}
+
+.header-buttons {
+    flex-grow: 1;
 }
