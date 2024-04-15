@@ -6,4 +6,5 @@ customElements.define('emoji-canvas', EmojiCanvas);
 
 window.clearEmojiCanvas = () => {
   document.querySelector('.emoji-canvas__canvas').innerHTML = '';
+  Notiflix.Notify.success('Canvas cleared.');
 };
