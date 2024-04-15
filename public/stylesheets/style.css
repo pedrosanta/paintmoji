@@ -37,12 +37,17 @@ header h1 {
   user-select: none;
 }
 
-.emoji-canvas__cursor {
+.emoji-canvas__cursor,
+.emoji-canvas__paint {
   display: inline-block;
   position: absolute;
   transform: translateX(-50%) translateY(-50%);
   font-size: 3rem;
+}
+
+.emoji-canvas__cursor {
   visibility: hidden;
+  z-index: 1;
 }
 
 .emoji-canvas:hover .emoji-canvas__cursor {

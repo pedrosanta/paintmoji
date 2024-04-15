@@ -4,12 +4,14 @@ class EmojiCanvas extends HTMLElement {
   constructor() {
     super();
 
-    console.log('New emoji canvas:', this);
-
     this.cursorEl = document.createElement('div');
     this.cursorEl.className = 'emoji-canvas__cursor';
     this.cursorEl.textContent = state.emoji;
     this.appendChild(this.cursorEl);
+
+    this.canvasEl = document.createElement('div');
+    this.canvasEl.className = 'emoji-canvas__canvas';
+    this.appendChild(this.canvasEl);
 
     this.addEventListener('mousemove', this.handleMouseMove.bind(this));
     this.addEventListener('click', this.handleClick.bind(this));
@@ -27,7 +29,16 @@ class EmojiCanvas extends HTMLElement {
     const top = y * 100 / this.offsetHeight;
     const left = x * 100 / this.offsetWidth;
 
-    console.log('Emoji canvas click:', top, left);
+    this.placePaint({top, left});
+  }
+
+  placePaint({top, left}) {
+    const paintEl = document.createElement('div');
+    paintEl.className = 'emoji-canvas__paint';
+    paintEl.textContent = state.emoji;
+    paintEl.style.top = `${top}%`;
+    paintEl.style.left = `${left}%`;
+    this.canvasEl.appendChild(paintEl);
   }
 }
 
