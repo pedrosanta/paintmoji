@@ -1,7 +1,9 @@
 # paintmoji
 An example of a realtime collaborative app based on [ShareDB](https://github.com/share/sharedb) and [Operational Transformation](https://en.wikipedia.org/wiki/Operational_transformation).
 
-[Demo](https://paintmoji.onrender.com) (Note: this is hosted on [a Render free instance](https://docs.render.com/free), which spins down after some time of inactivity and it might take some more time to load if it's down, just keep this in mind when trying this project.)
+**Demo: [https://paintmoji.onrender.com](https://paintmoji.onrender.com)**
+
+(Note: this is hosted on [a Render free instance](https://docs.render.com/free), which spins down after some time of inactivity and it might take some more time to load if it's down, just keep this in mind when trying this project.)
 
 ## Setup
 
