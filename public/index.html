@@ -8,14 +8,35 @@
 </head>
 
 <body>
-  <header>
-    <h1>paintmoji</h1>
-    <div class="header-buttons">
-      <button>👌</button>
-      <button>clear</button>
-    </div>
-    <a href="https://github.com/pedrosanta/paintmoji">github</a>
-  </header>
+  <div class="fullscreen-container">
+
+    <header>
+      <h1>paintmoji</h1>
+
+      <div class="header-buttons">
+
+        <emoji-picker-button></emoji-picker-button>
+
+        <button>clear</button>
+
+      </div> <!-- .header-buttons -->
+
+      <a href="https://github.com/pedrosanta/paintmoji">github</a>
+    </header>
+
+    <emoji-canvas class="emoji-canvas"></emoji-canvas>
+
+  </div> <!-- .fullscreen-container -->
+
+  <script src="https://unpkg.com/emoji-mart@^5.5.2/dist/browser.js"></script>
+  <script type="module" src="javascripts/main.js"></script>
+
+  <!-- <script>
+    const pickerOptions = { onEmojiSelect: console.log }
+    const picker = new EmojiMart.Picker(pickerOptions)
+
+    document.body.appendChild(picker)
+  </script> -->
 </body>
 
 </html>
