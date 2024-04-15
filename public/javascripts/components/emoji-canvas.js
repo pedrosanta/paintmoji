@@ -15,6 +15,8 @@ class EmojiCanvas extends HTMLElement {
 
     this.addEventListener('mousemove', this.handleMouseMove.bind(this));
     this.addEventListener('click', this.handleClick.bind(this));
+
+    document.addEventListener('emoji-state-updated', () => this.cursorEl.textContent = state.emoji );
   }
 
   handleMouseMove(event) {
