@@ -20,6 +20,8 @@ class EmojiCanvasClearButton extends HTMLElement {
   }
 
   handleShareDBLoad() {
+    if(!ShareDBHelper.doc.data) return;
+
     this.counter = ShareDBHelper.doc.data.emojis.length;
   }
 

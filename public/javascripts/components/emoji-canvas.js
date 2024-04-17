@@ -69,6 +69,8 @@ class EmojiCanvas extends HTMLElement {
   }
 
   handleShareDBLoad() {
+    if(!ShareDBHelper.doc.data) return;
+
     console.log('[EmojiCanvas] Document loaded. Handling/applying state.');
 
     ShareDBHelper.doc.data.emojis.forEach( emoji => this.placePaint(emoji));

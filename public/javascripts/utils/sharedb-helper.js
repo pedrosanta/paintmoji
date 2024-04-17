@@ -8,7 +8,7 @@ class ShareDBHelper {
 
   static init() {
     // Open web socket
-    console.log('[ShareDBHelper] Opening web socket...');
+    console.log('[ShareDBHelper] 🔃 Opening web socket...');
     this.#socket = new ReconnectingWebSocket(`${window.location.protocol == 'https:' ? 'wss' : 'ws'}://${window.location.host}`, [], {
       maxEnqueuedMessages: 0
     });
@@ -18,7 +18,7 @@ class ShareDBHelper {
     this.#socket.addEventListener('error', this.#handleSocketError);
 
     // Create ShareDB connection
-    console.log('[ShareDBHelper] Creating ShareDB connection...');
+    console.log('[ShareDBHelper] 🔃 Creating ShareDB connection...');
     this.#connection = new ShareDBClient.Connection(this.#socket);
     this.#connection.on('state', this.#handleConnectionState);
 
@@ -27,7 +27,7 @@ class ShareDBHelper {
     document.dispatchEvent(new Event('sharedb-document-ready'));
 
     // Subscribe to the document
-    console.log('[ShareDBHelper] Subscribing to the ShareDB document...');
+    console.log('[ShareDBHelper] 🔃 Subscribing to the ShareDB document...');
     this.doc.subscribe(this.#handleDocSubscribe.bind(this));
   }
 
@@ -44,7 +44,7 @@ class ShareDBHelper {
   }
 
   static #handleConnectionState(newState, reason) {
-    console.log(`[ShareDBHelper] ℹ️ ShareDB connection state changed: ${newState}.${reason ? ` (Reason: ${reason}.)` : ''}`);
+    console.log(`[ShareDBHelper] ${newState == 'connected' ? '✅' : 'ℹ️'} ShareDB connection state changed: ${newState}.${reason ? ` (Reason: ${reason}.)` : ''}`);
   }
 
   static #handleDocSubscribe(error) {
@@ -56,14 +56,16 @@ class ShareDBHelper {
 
     // If doc.type is undefined, the document has not been created, so let's create it
     if (!this.doc.type) {
+      console.log('[ShareDBHelper] ⚠️ ShareDB document not found. Creating...');
+
       const initialDocument = {
         emojis: []
       }
 
       this.doc.create(initialDocument, this.#handleDocCreate.bind(this));
+    } else {
+      console.log('[ShareDBHelper] ✅ ShareDB document subscription sucessful.');
     }
-
-    console.log('[ShareDBHelper] ✅ ShareDB document subscription sucessful.', this.doc);
   }
 
   static #handleDocCreate(error) {
