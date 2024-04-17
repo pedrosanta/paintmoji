@@ -4,8 +4,6 @@ class EmojiPickerButton extends HTMLElement {
   constructor() {
     super();
 
-    console.log('New emoji picker button:', this);
-
     this.style.position = 'relative';
 
     this.buttonEl = document.createElement('button');

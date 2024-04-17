@@ -18,6 +18,11 @@ class EmojiCanvas extends HTMLElement {
     this.addEventListener('click', this.handleClick.bind(this));
 
     document.addEventListener('emoji-state-updated', () => this.cursorEl.textContent = state.emoji );
+
+    // Handle ShareDB document ops (remote and *local*)
+    document.addEventListener('sharedb-document-ready', () => {
+      ShareDBHelper.doc.on('op', this.handleShareDBOp.bind(this));
+    })
   }
 
   handleMouseMove(event) {
@@ -32,10 +37,6 @@ class EmojiCanvas extends HTMLElement {
     const top = y * 100 / this.offsetHeight;
     const left = x * 100 / this.offsetWidth;
 
-    this.placePaint({top, left});
-  }
-
-  placePaint({top, left}) {
     // Submit ShareDB operation
     ShareDBHelper.doc.submitOp({
       p: ['emojis', ShareDBHelper.doc.data.emojis.length],
@@ -46,9 +47,22 @@ class EmojiCanvas extends HTMLElement {
       }
     });
 
+  }
+
+  handleShareDBOp(opList) {
+    console.log('[EmojiCanvas] Received op, handling.');
+
+    opList.forEach(op => {
+      // Emoji list insert
+      if(op.li)
+        this.placePaint(op.li);
+    });
+  }
+
+  placePaint({emoji, top, left}) {
     const paintEl = document.createElement('div');
     paintEl.className = 'emoji-canvas__paint';
-    paintEl.textContent = state.emoji;
+    paintEl.textContent = emoji;
     paintEl.style.top = `${top}%`;
     paintEl.style.left = `${left}%`;
     this.canvasEl.appendChild(paintEl);

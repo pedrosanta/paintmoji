@@ -22,17 +22,13 @@ class ShareDBHelper {
     this.#connection = new ShareDBClient.Connection(this.#socket);
     this.#connection.on('state', this.#handleConnectionState);
 
-    // Init ShareDB document
+    // Init ShareDB document and
     this.doc = this.#connection.get('emoji_paintings', '1');
+    document.dispatchEvent(new Event('sharedb-document-ready'));
 
     // Subscribe to the document
     console.log('[ShareDBHelper] Subscribing to the ShareDB document...');
     this.doc.subscribe(this.#handleDocSubscribe.bind(this));
-
-    // ShareDB dummy op listener
-    this.doc.on('op', (op) => {
-      console.log('[ShareDBHelper] Dummy op listener, op received:', op, this.doc);
-    });
   }
 
   static #handleSocketOpen() {
