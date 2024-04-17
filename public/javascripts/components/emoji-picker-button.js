@@ -1,4 +1,4 @@
-import state, { setEmoji } from '../state.js';
+import state, { setEmoji } from '../utils/state.js';
 
 class EmojiPickerButton extends HTMLElement {
   constructor() {

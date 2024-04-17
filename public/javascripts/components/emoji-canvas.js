@@ -1,4 +1,4 @@
-import state from '../state.js'
+import state from '../utils/state.js';
 
 class EmojiCanvas extends HTMLElement {
   constructor() {
