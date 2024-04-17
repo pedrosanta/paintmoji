@@ -28,6 +28,11 @@ class ShareDBHelper {
     // Subscribe to the document
     console.log('[ShareDBHelper] Subscribing to the ShareDB document...');
     this.doc.subscribe(this.#handleDocSubscribe.bind(this));
+
+    // ShareDB dummy op listener
+    this.doc.on('op', (op) => {
+      console.log('[ShareDBHelper] Dummy op listener, op received:', op, this.doc);
+    });
   }
 
   static #handleSocketOpen() {
@@ -62,7 +67,7 @@ class ShareDBHelper {
       this.doc.create(initialDocument, this.#handleDocCreate.bind(this));
     }
 
-    console.log('[ShareDBHelper] ✅ ShareDB document subscription sucessful.');
+    console.log('[ShareDBHelper] ✅ ShareDB document subscription sucessful.', this.doc);
   }
 
   static #handleDocCreate(error) {

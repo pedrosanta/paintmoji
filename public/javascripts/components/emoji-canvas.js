@@ -1,4 +1,5 @@
 import state from '../utils/state.js';
+import ShareDBHelper from '../utils/sharedb-helper.js';
 
 class EmojiCanvas extends HTMLElement {
   constructor() {
@@ -35,6 +36,16 @@ class EmojiCanvas extends HTMLElement {
   }
 
   placePaint({top, left}) {
+    // Submit ShareDB operation
+    ShareDBHelper.doc.submitOp({
+      p: ['emojis', ShareDBHelper.doc.data.emojis.length],
+      li: {
+        emoji: state.emoji,
+        top,
+        left
+      }
+    });
+
     const paintEl = document.createElement('div');
     paintEl.className = 'emoji-canvas__paint';
     paintEl.textContent = state.emoji;
