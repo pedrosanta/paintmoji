@@ -19,7 +19,7 @@ An example of a realtime collaborative app based on [ShareDB](https://github.com
 
 This project is deployed on [Render](https://render.com) using a [Free Services instance](https://docs.render.com/free) and it's available at **[paintmoji.onrender.com](https://paintmoji.onrender.com)**.
 
-Since we're using a free instance, [this instance spins down after some time of inactivity, and it will take a few seconds more to respond to a request if it needs to spin back up.](https://docs.render.com/free#spinning-down-on-idle) Just keep this in mind when trying this project demo.
+Since I'm using a free instance, [this instance spins down after some time of inactivity, and it will take a few seconds more to respond to a request if it needs to spin back up.](https://docs.render.com/free#spinning-down-on-idle) Just keep this in mind when trying this project demo.
 
 ## Maintainer/Who to talk
 
