@@ -9,7 +9,7 @@ class ShareDBHelper {
   static init() {
     // Open web socket
     console.log('[ShareDBHelper] Opening web socket...');
-    this.#socket = new ReconnectingWebSocket(`wss://${window.location.host}`, [], {
+    this.#socket = new ReconnectingWebSocket(`${window.location.protocol == 'https:' ? 'wss' : 'ws'}://${window.location.host}`, [], {
       maxEnqueuedMessages: 0
     });
 
