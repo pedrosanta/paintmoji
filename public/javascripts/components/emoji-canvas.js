@@ -26,7 +26,7 @@ class EmojiCanvas extends HTMLElement {
 
       // Handle ShareDB document ops (remote and *local*)
       ShareDBHelper.doc.on('op', this.handleShareDBOp.bind(this));
-    })
+    });
   }
 
   handleMouseMove(event) {
@@ -49,18 +49,23 @@ class EmojiCanvas extends HTMLElement {
         top,
         left
       }
+    }, {}, (error) => {
+      if(error)
+        console.error('[EmojiCanvas] 💥 Error sending op:', error);
     });
 
   }
 
-  handleShareDBOp(opList) {
+  handleShareDBOp() {
     console.log('[EmojiCanvas] Received op, handling.');
 
-    opList.forEach(op => {
-      // Emoji list insert
-      if(op.li)
-        this.placePaint(op.li);
+    let innerHTML= '';
+
+    ShareDBHelper.doc.data.emojis.forEach(emoji => {
+      innerHTML+= `<div class="emoji-canvas__paint" style="top: ${emoji.top}%; left: ${emoji.left}%;">${emoji.emoji}</div>`;
     });
+
+    this.canvasEl.innerHTML = innerHTML;
   }
 
   handleShareDBLoad() {
