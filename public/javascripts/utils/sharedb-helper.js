@@ -22,9 +22,8 @@ class ShareDBHelper {
     this.#connection = new ShareDBClient.Connection(this.#socket);
     this.#connection.on('state', this.#handleConnectionState);
 
-    // Init ShareDB document and
+    // Init ShareDB document
     this.doc = this.#connection.get('emoji_paintings', '1');
-    document.dispatchEvent(new Event('sharedb-document-ready'));
 
     // Subscribe to the document
     console.log('[ShareDBHelper] Subscribing to the ShareDB document...');
@@ -61,9 +60,10 @@ class ShareDBHelper {
       }
 
       this.doc.create(initialDocument, this.#handleDocCreate.bind(this));
+    } else {
+      document.dispatchEvent(new Event('sharedb-document-ready'));
+      console.log('[ShareDBHelper] ✅ ShareDB document subscription sucessful.', this.doc);
     }
-
-    console.log('[ShareDBHelper] ✅ ShareDB document subscription sucessful.', this.doc);
   }
 
   static #handleDocCreate(error) {
@@ -73,6 +73,7 @@ class ShareDBHelper {
       return;
     }
 
+    document.dispatchEvent(new Event('sharedb-document-ready'));
     console.log('[ShareDBHelper] ✅ ShareDB document created sucessfully.');
   }
 }
