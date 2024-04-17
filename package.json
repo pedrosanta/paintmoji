@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "build-sharedb-client": "browserify public/vendor/sharedb-client.cjs -s ShareDBClient -o public/vendor/sharedb-client-umd.js"
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^0.32.0",
@@ -14,5 +15,8 @@
     "morgan": "~1.9.1",
     "sharedb": "^4.1.4",
     "ws": "^8.16.0"
+  },
+  "devDependencies": {
+    "browserify": "^17.0.0"
   }
 }
