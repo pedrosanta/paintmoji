@@ -19,8 +19,12 @@ class EmojiCanvas extends HTMLElement {
 
     document.addEventListener('emoji-state-updated', () => this.cursorEl.textContent = state.emoji );
 
-    // Handle ShareDB document ops (remote and *local*)
+    // Wait for ShareDB document to be ready
     document.addEventListener('sharedb-document-ready', () => {
+      // Handle current ShareDB document state when subscribing
+      ShareDBHelper.doc.on('load', this.handleShareDBLoad.bind(this));
+
+      // Handle ShareDB document ops (remote and *local*)
       ShareDBHelper.doc.on('op', this.handleShareDBOp.bind(this));
     })
   }
@@ -57,6 +61,12 @@ class EmojiCanvas extends HTMLElement {
       if(op.li)
         this.placePaint(op.li);
     });
+  }
+
+  handleShareDBLoad() {
+    console.log('[EmojiCanvas] Document loaded. Handling/applying state.');
+
+    ShareDBHelper.doc.data.emojis.forEach( emoji => this.placePaint(emoji));
   }
 
   placePaint({emoji, top, left}) {
